@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1 {font-family: "Raleway", sans-serif}
+body, html {height: 100%}
+.bgimg {
+  background-image: url('/image/background.jpeg');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+ 
+}
+.logoimg {
+ 
+   
+    height: 100px;
+  
+   
+}
+.header a.logos:hover {
+  color:white;
+}
+
+.header a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+  margin: 25px 25px;
+ 
+}
+
+.header {
+  overflow: hidden;
+  background-color: #ffffff;
+  
+  width: 100%;
+   
+    height: 1%;
+}
+
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+  
+}
+
+.searchBox{
+	margin-left: 10%;
+	margin-right: auto;
+	float: left;
+}
+.searchButton{
+	margin-left: 5px;
+	color: white;
+	background-color: #1E90FF;
+	border: none;
+    height: 30px;
+    border-radius: 5px;
+}
+.resetButton{
+	margin-left: 0px;color: white;background-color: #1E90FF;
+	border: none;
+    height: 30px;
+    border-radius: 5px;
+}
+.cityList{
+	float: left;position: absolute;margin-top: 3%;margin-left: 10%;
+	
+}
+
+.errorPara{
+	color: white; font-size: 25px;font-weight: bold;
+}
+.inputTextBox{
+	width: 25em;height: 2em;
+}
+</style>
+<body>
+
+<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
+
+<!--Page Header-->
+<div class="header">
+  <span ><image class= "logoimg" src="/image/logo.png"/></span>
+  
+  <div class="header-right">
+    <a class="active" href="https://www.hsbc.co.in">Home</a>
+    <a href="https://www.hsbc.co.in/help/contact/">Contact</a>
+    <a href="https://www.about.hsbc.co.in/">About</a>
+  </div>
+
+</div>
+
+<!--Middle Content -->
+  
+  <div class="w3-display-middle">
+    <h1 class="w3-jumbo w3-animate-top">Search City By Alphabet</h1>
+  <form action="#" th:action="@{/home}" th:object="${inputDetail}" method="POST">
+      <div class="form-group" >
+    		<div class="searchBox" >
+    			<input class="inputTextBox" id="searchBox" name="searchBox" value="Please enter starting alphabet of city" type="text" th:field="*{alphabet}" onfocus="if(this.value==this.defaultValue)this.value=''" onblur="if(this.value=='')this.value=this.defaultValue"  maxlength="1"/>
+    		</div>
+    		<div class="searchResetButton">
+    			<input type="submit" value="Search" class="searchButton" /> 
+    			<input type="reset" value="Reset" class="resetButton" onclick="document.getElementById('searchBox').value = ''"/>
+    		</div>
+    		<hr class="w3-border-grey" style="width: 72%; float: left;margin-left: 10%;">
+    		<div  class="cityList">
+    		<ul>
+    		<div th:each="city : ${cityNameList}">
+            	<li th:text="${city}"/> 
+             </div>
+    		</ul>
+    		<div class="errorDiv">
+    		<p th:text="${error}" class="errorPara"/>
+    		</div>
+    		<div class="errorDiv">
+    		<p th:text="${empty}" class="errorPara"/>
+    		</div>
+    		
+    		</div>
+    	</div>
+   </form>
+ </div>
+ 
+</div>
+
+</body>
+</html>

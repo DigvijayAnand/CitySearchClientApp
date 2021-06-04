@@ -1,0 +1,57 @@
+
+buildscript {
+	ext {
+		springBootVersion = '2.5.0.RELEASE'
+	}
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+plugins {
+	id 'org.springframework.boot' version '2.5.0'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+}
+
+
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+bootJar {
+    mainClassName = 'com.hsbc.interview.main'
+}
+
+//bootJar {    
+ //   baseName = "SpringBoot-CitySearchClientApp"
+ //   version =  '0.0.1'
+//}
+
+
+
+
+group = 'com.digvijayanand.interview'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.springframework.boot:spring-boot-starter-test')
+	// https://mvnrepository.com/artifact/org.jsonschema2pojo/jsonschema2pojo-gradle-plugin
+	compile group: 'org.jsonschema2pojo', name: 'jsonschema2pojo-gradle-plugin', version: '1.1.1'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf
+	compile group: 'org.springframework.boot', name: 'spring-boot-starter-thymeleaf', version: '2.5.0'
+
+}
+
+test {
+	useJUnitPlatform()
+}
